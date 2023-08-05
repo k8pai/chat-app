@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { sessionType } from '@/pages';
-import { Session } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import { MdLogout } from 'react-icons/md';
+import { SessionUser } from '@/typings';
 
-const Sidenav: React.FC<sessionType> = ({ user }) => {
+const Sidenav: React.FC<SessionUser> = ({ user }) => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	console.log('session => ', user);
 
 	const handleAddFriend = () => {
 		// Add friend logic here
@@ -24,31 +24,8 @@ const Sidenav: React.FC<sessionType> = ({ user }) => {
 	};
 
 	return (
-		<div className="flex flex-col justify-between w-64 p-4 bg-neutral-800/30 text-white min-h-full">
+		<div className="flex flex-col justify-between  min-w-[300px] w-3/12 p-4 bg-neutral-800/30 text-white h-screen sticky top-0">
 			<div className="text-2xl font-bold mb-6">Chat App</div>
-			{/* {user ? (
-				<>
-					<button
-						className="bg-green-500 hover:bg-green-600 px-4 py-2 rounded text-white mb-4"
-						onClick={handleAddFriend}
-					>
-						Add Friend
-					</button>
-					<button
-						className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white"
-						onClick={handleLogout}
-					>
-						Logout
-					</button>
-				</>
-			) : (
-				<button
-					className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white"
-					onClick={handleSignIn}
-				>
-					Sign In
-				</button>
-			)} */}
 
 			<div>
 				{user ? (
@@ -59,7 +36,7 @@ const Sidenav: React.FC<sessionType> = ({ user }) => {
 								alt={user.name!}
 								height={10}
 								width={30}
-								className="rounded-full"
+								className="rounded-full aspect-square w-8 h-8"
 							/>
 							<div>
 								<h1 className="font-semibold tracking-wide">
