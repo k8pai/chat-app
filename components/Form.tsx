@@ -52,14 +52,14 @@ const Form: React.FC<SessionUser> = ({ user }) => {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="fixed bottom-0 bg-black z-50 flex max-w-5xl w-full flex-row p-5"
+			className="fixed bottom-0 bg-black z-50 flex max-w-5xl w-full flex-row p-5 border-t border-neutral-800"
 		>
 			<input
 				type="text"
 				placeholder="Type your message..."
 				value={state}
 				onChange={(e) => setState(e.target.value)}
-				className="flex-1 py-2 px-3 mx-2 rounded-lg bg-neutral-800/40 focus:outline-none"
+				className="flex-1 py-2 px-4 mx-2 rounded-md shadow-md bg-neutral-800/40 focus:outline-none"
 			/>
 			<button
 				disabled={!state}

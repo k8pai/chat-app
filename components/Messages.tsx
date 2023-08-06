@@ -11,10 +11,7 @@ function Messages() {
 	const messageRef = useRef<HTMLDivElement>(null);
 
 	const scrollToLast = () => {
-		if (messageRef.current) {
-			const messageRefInstance = messageRef.current;
-			messageRefInstance.scrollTop = messageRefInstance.scrollHeight;
-		}
+		messageRef.current?.scrollIntoView();
 	};
 
 	useEffect(() => {
@@ -41,13 +38,18 @@ function Messages() {
 
 	return (
 		<div
-			ref={messageRef}
-			className="flex flex-col justify-normal px-6 pb-24 box-border"
+			className="flex flex-col justify-normal px-4 pb-24 pt-4 box-border"
 			style={{ overflowY: 'auto' }}
 		>
-			{data?.map((el) => (
-				<MessageComponent key={el.id} message={el!} />
+			{data?.map((el, ind) => (
+				<MessageComponent
+					key={el.id}
+					message={el!}
+					prev={data[ind - 1]}
+					next={data[ind + 1]}
+				/>
 			))}
+			<div ref={messageRef}></div>
 		</div>
 	);
 }
